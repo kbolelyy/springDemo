@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -28,6 +29,29 @@ public class ControllerTest {
         model.addAttribute("employeeList", allEmployee);
         return "employee";
 
+    }
+
+
+    @RequestMapping(value = "/employeeSort", method = RequestMethod.GET)
+    public String employeeSort(Model model, HttpServletRequest request){
+
+        int page = Integer.parseInt(request.getParameter("page"));
+        int size = Integer.parseInt(request.getParameter("size"));
+        String field = request.getParameter("field");
+
+        model.addAttribute("pageEmployee", employeeService.getPageEmployeeResult(page, size, field));
+        model.addAttribute("employeeCount", employeeService.getCountEmployee());
+        model.addAttribute("page", page);
+        model.addAttribute("field", field);
+
+
+        return "employeeSort";
+    }
+
+    @RequestMapping(value = "/employeeCount", method = RequestMethod.GET)
+    public Model getEmployeeCount(Model model){
+        model.addAttribute("employeeCount", employeeService.getCountEmployee());
+        return model;
     }
 
 }

@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.EmployeeDao;
+import com.example.demo.dao.EmployeeSortingDao;
 import com.example.demo.dto.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeDao dao;
 
+    @Autowired
+    private EmployeeSortingDao sortingDao;
+
     @Override
     public List<Employee> getAllEmployee() {
 
@@ -21,4 +27,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         dao.findAll().forEach(employeeList::add);
         return employeeList;
     }
+
+    @Override
+    public List<Employee> getPageEmployeeResult(int page, int limit, String field) {
+        return sortingDao.findAll(PageRequest.of(page, limit, Sort.by(field).descending())).getContent();
+    }
+
+
+    @Override
+    public long getCountEmployee() {
+        return dao.count();
+    }
+
+
 }

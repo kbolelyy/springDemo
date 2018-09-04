@@ -8,5 +8,8 @@ public interface EmployeeService {
 
     List<Employee> getAllEmployee();
 
+    List<Employee> getPageEmployeeResult(int page, int limit, String field);
+
+    long getCountEmployee();
 
 }
