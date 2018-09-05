@@ -15,13 +15,15 @@
     <title>EmployeeSort</title>
 </head>
 <body>
-<form:form>
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>First name</th>
             <th>Second name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
         </tr>
         </thead>
         <tbody>
@@ -30,32 +32,40 @@
                 <td>${employee.id}</td>
                 <td>${employee.fitrstName}</td>
                 <td>${employee.secondName}</td>
+                <td><button class="btn btn-primary" type="button" value="Edit"><a href="/openViewEmployee/${employee.id}">Edit</a></button></td>
+                <td><button class="btn btn-primary" type="button" value="Delete"><a href="/openViewEmployee/${employee.id}">Delete</a></button></td>
             </tr>
         </c:forEach>
+        </tbody>
+    </table>
+    <div>
         <nav>
             <ul class="pagination justify-content-center">
-                <li class="page-item ${page == 0  ? "disabled" : ""}">
-                    <a class="page-link" href="${pageContext.request.contextPath}/employeeSort?page=${page - 1}&size=10&field=${field}">Last</a>
+                <li class="page-item ${page == 1  ? "disabled" : ""}">
+                    <a class="page-link" href="${pageContext.request.contextPath}/employeeSort/${page - 1}/${size}/${field}">Last</a>
                 </li>
-                <c:forEach begin="${page}" end="${page + 2}" var="p">
-                    <li class="page-item ${page == p ? "active" : ""}">
-                        <a class="page-link" href="${pageContext.request.contextPath}/employeeSort?page=${p}&size=10&field=${field}">${p}</a>
+                <c:forEach begin="${page}" end="${page + 2}" var="pageNumber">
+                    <li class="page-item ${page == pageNumber ? "active" : ""}">
+                        <a class="page-link" href="${pageContext.request.contextPath}/employeeSort/${pageNumber}/${size}/${field}">${pageNumber}</a>
                     </li>
                 </c:forEach>
-                <li  class="page-item ${page + 2 > employeeCount/10  ? "disabled" : ""}">
-                    <a class="page-link" href="${pageContext.request.contextPath}/employeeSort?page=${page + 1}&size=10&field=${field}">Next</a>
+                <li  class="page-item ${page + 2 > employeeCount/size ? "disabled" : ""}">
+                    <a class="page-link" href="${pageContext.request.contextPath}/employeeSort/${page + 1}/${size}/${field}">Next</a>
                 </li>
             </ul>
         </nav>
-        <select id="page" name="page">
-            <option value="10" selected="selected">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-        </select>
-        <input type="submit" value="Search">
-        </tbody>
-    </table>
-</form:form>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/employeeSort/${page}/10/${field}">10</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/employeeSort/${page}/25/${field}">25</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/employeeSort/{page}/50/${field}">50</a>
+            </li>
+        </ul>
+    </div>
 
 </body>
 </html>

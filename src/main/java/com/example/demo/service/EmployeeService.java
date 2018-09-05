@@ -10,6 +10,10 @@ public interface EmployeeService {
 
     List<Employee> getPageEmployeeResult(int page, int limit, String field);
 
+    Employee findById(Long id);
+
     long getCountEmployee();
+
+    void createEmployee(Employee employee);
 
 }

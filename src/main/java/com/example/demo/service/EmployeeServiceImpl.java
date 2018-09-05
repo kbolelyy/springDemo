@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +34,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         return sortingDao.findAll(PageRequest.of(page, limit, Sort.by(field).descending())).getContent();
     }
 
+    @Override
+    public Employee findById(Long id) {
+        return dao.findById(id).orElseThrow(() -> new EntityNotFoundException("can`t find employye with id :" + id));
+    }
+
 
     @Override
     public long getCountEmployee() {
         return dao.count();
+    }
+
+    @Override
+    public void createEmployee(Employee employee) {
+        dao.save(employee);
     }
 
 

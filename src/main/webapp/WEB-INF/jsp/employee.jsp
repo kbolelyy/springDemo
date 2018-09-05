@@ -5,19 +5,6 @@
     <title>EmployeeList</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Second name</th>
-    </tr>
-    <c:forEach items="${employeeList}" var="employee" >
-        <tr>
-            <td>${employee.id}</td>
-            <td>${employee.fitrstName}</td>
-            <td>${employee.secondName}</td>
-        </tr>
-    </c:forEach>
-</table>
+
 </body>
 </html>
