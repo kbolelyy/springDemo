@@ -15,7 +15,7 @@ public class Employee {
     private Long id;
 
     @Column(name = "first_name")
-    private String fitrstName;
+    private String firstName;
     @Column(name = "second_name")
     private String secondName;
 
@@ -27,12 +27,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFitrstName() {
-        return fitrstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFitrstName(String fitrstName) {
-        this.fitrstName = fitrstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSecondName() {

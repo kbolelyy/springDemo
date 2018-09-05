@@ -25,18 +25,24 @@ public class ControllerTest {
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model) {
         employeeService.createEmployee(employee);
 
-        model.addAttribute("employee", employee);
+        model.addAttribute("employeeAdd", employee);
         if (result.hasErrors()) {
             return "error";
         }
-        return "openViewEmployee";
+        return "editViewEmployee";
     }
 
-    @RequestMapping(value = "/openViewEmployee/{id}", method = RequestMethod.GET)
-    public String openViewEmployee(@PathVariable Long id, Model model) {
+    @RequestMapping(value = "/createNewEmployee", method = RequestMethod.GET)
+    public String createNewEmployee(){
+
+        return "createEmployee";
+    }
+
+    @RequestMapping(value = "/editViewEmployee/{id}", method = RequestMethod.GET)
+    public String editViewEmployee(@PathVariable Long id, Model model) {
         Employee employee = employeeService.findById(id);
-        model.addAttribute("employee", employee);
-        return "openViewEmployee";
+        model.addAttribute("employeeEdit", employee);
+        return "editViewEmployee";
     }
 
 

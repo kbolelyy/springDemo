@@ -23,17 +23,16 @@
             <th>Second name</th>
             <th>Edit</th>
             <th>Delete</th>
-
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${pageEmployee}" var="employee">
             <tr>
                 <td>${employee.id}</td>
-                <td>${employee.fitrstName}</td>
+                <td>${employee.firstName}</td>
                 <td>${employee.secondName}</td>
-                <td><button class="btn btn-primary" type="button" value="Edit"><a href="/openViewEmployee/${employee.id}">Edit</a></button></td>
-                <td><button class="btn btn-primary" type="button" value="Delete"><a href="/openViewEmployee/${employee.id}">Delete</a></button></td>
+                <td><a href="/editViewEmployee/${employee.id}"><button class="btn btn-primary" type="button">Edit</button></a></td>
+                <td><a href="/editViewEmployee/${employee.id}"><button class="btn btn-primary" type="button">Delete</button></a></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -65,6 +64,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/employeeSort/{page}/50/${field}">50</a>
             </li>
         </ul>
+        <a href="${pageContext.request.contextPath}/createNewEmployee"><button class="btn btn-primary" type="button">Create employee</button></a>
     </div>
 
 </body>
