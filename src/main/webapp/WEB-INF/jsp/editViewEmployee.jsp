@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <head>
-    <title>Create employee </title>
+    <title>Edit employee </title>
 </head>
 <body>
 
@@ -39,7 +39,7 @@
             </li>
         </ul>
     </div>
-    <a href="${pageContext.request.contextPath}/employeeSort/1/10/id">
+    <a href="${pageContext.request.contextPath}/employeeSort/0/10/id">
         <button type="button" class="btn btn-primary">Back to info Employee</button>
     </a>
 </form:form>

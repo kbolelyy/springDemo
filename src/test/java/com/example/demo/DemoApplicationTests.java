@@ -12,7 +12,7 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads() {
 		for (int i = 0; i <200 ; i++) {
-			System.out.println("(" + i + " , 'John "+ i +" ', 'Smith"+i +"'),");
+			System.out.println("('John "+ i +" ', 'Smith"+i +"'),");
 		}
 
 	}

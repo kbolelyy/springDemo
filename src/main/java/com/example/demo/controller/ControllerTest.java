@@ -23,22 +23,26 @@ public class ControllerTest {
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model) {
-        employeeService.createEmployee(employee);
-
-        model.addAttribute("employeeAdd", employee);
         if (result.hasErrors()) {
             return "error";
         }
+        employeeService.createEmployee(employee);
+        model.addAttribute("employeeEdit", employee);
+
         return "editViewEmployee";
     }
 
+    /*create employee*/
     @RequestMapping(value = "/createNewEmployee", method = RequestMethod.GET)
-    public String createNewEmployee(){
-
+    public String createEmployeeView(Model model){
+        model.addAttribute("employee", new Employee());
         return "createEmployee";
     }
 
-    @RequestMapping(value = "/editViewEmployee/{id}", method = RequestMethod.GET)
+
+
+    /*update employee*/
+    @RequestMapping(value = "/editEmployee/{id}", method = RequestMethod.GET)
     public String editViewEmployee(@PathVariable Long id, Model model) {
         Employee employee = employeeService.findById(id);
         model.addAttribute("employeeEdit", employee);
@@ -46,6 +50,15 @@ public class ControllerTest {
     }
 
 
+
+    /*delete employee*/
+    @RequestMapping(value = "/deleteEmployee/{id}", method = RequestMethod.GET)
+    public String deleteEmployee(@PathVariable Long id){
+        employeeService.removeEmployee(id);
+        return "redirect:/employeeSort/1/10/id";
+    }
+
+    /*pagination*/
     @RequestMapping(value = "/employeeSort/{page}/{size}/{field}", method = RequestMethod.GET)
     public String employeeSort(Model model, @PathVariable int page, @PathVariable int size, @PathVariable String field) {
         model.addAttribute("pageEmployee", employeeService.getPageEmployeeResult(page, size, field));

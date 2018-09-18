@@ -14,16 +14,23 @@
     <title>Create employee</title>
 </head>
 <body>
-<form:form action="${pageContext.request.contextPath}/addEmployee" method="post" >
-    <div class="form-group">
-        <label>First name</label>
-        <input type="text" class="form-control" placeholder="First name">
-    </div>
-    <div class="form-group">
-        <label>Second name</label>
-        <input type="text" class="form-control" placeholder="Second name">
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+<form:form method="POST" modelAttribute="employee" action="${pageContext.request.contextPath}/addEmployee">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><form:input path="firstName"/></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><form:input path="secondName" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn-lg btn-primary pull-right">Create
+                </button>
+            </td>
+        </tr>
+    </table>
 </form:form>
 
 

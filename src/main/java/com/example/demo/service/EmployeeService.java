@@ -16,4 +16,6 @@ public interface EmployeeService {
 
     void createEmployee(Employee employee);
 
+    void removeEmployee(Long id);
+
 }
